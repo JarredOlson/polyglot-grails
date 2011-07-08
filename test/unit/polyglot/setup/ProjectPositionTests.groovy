@@ -51,21 +51,27 @@ class ProjectPositionTests extends GrailsUnitTestCase {
     }
 
     @Test
-    void someMetaClassingStuff() {
-        Date date = new Date()
-        date.metaClass.someNewCoolMethodThatReturnsMyName = {return "Jarred"}
-        assert Date.class == date.getClass()
-        assert "Jarred" == date.someNewCoolMethodThatReturnsMyName()
-        assert Date.class == date.getClass()
+    void instanceLevelMetaClassingWillOnlyApplyToTheInstanceBeingMetaClassed() {
+        Date date1 = new Date()
+        date1.metaClass.someNewCoolMethodThatReturnsMyName = {return "Jarred"}
+        assert "Jarred" == date1.someNewCoolMethodThatReturnsMyName()
+        assert Date.class == date1.getClass()
+        Date date2 = new Date()
+        try {
+            date2.someNewCoolMethodThatReturnsMyName()
+            fail "should not get here"
+        } catch (Exception ex) {}
     }
 
     @Test
-    void someMetaClassingStuff2() {
+    void classLevelMetaClassingWillApplyToAllInstanceOfTheTypeBeingMetaClassed() {
         Date.metaClass.'static'.someNewCoolMethodThatReturnsMyName = {return "Jarred"}
-        Date date = new Date()
-        assert Date.class == date.getClass()
-        assert "Jarred" == date.someNewCoolMethodThatReturnsMyName()
-        assert Date.class == date.getClass()
+        
+        Date date1 = new Date()
+        assert "Jarred" == date1.someNewCoolMethodThatReturnsMyName()
+        Date date2 = new Date()
+        assert "Jarred" == date2.someNewCoolMethodThatReturnsMyName()
+        assert Date.class == date1.getClass()
     }
 
     @Test
