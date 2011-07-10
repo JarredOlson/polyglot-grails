@@ -1,8 +1,8 @@
 package polyglot.setup
 
-import grails.test.*
+import grails.test.ControllerUnitTestCase
 
-class EmployeeControllerTests extends ControllerUnitTestCase {
+class ProjectControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

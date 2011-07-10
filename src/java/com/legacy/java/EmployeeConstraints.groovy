@@ -1,3 +1,3 @@
 constraints = {
-    name maxSize:6
+    name maxSize:5
 }

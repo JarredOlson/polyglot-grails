@@ -9,6 +9,7 @@ public class Employee {
     String name;
     Double hourlyWage;
     Long uniqueIdentifier;
+    Long version;
 
     public Employee() {
 
@@ -49,6 +50,14 @@ public class Employee {
 
     public void setUniqueIdentifier(Long uniqueIdentifier) {
         this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }
